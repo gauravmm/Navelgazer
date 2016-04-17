@@ -1,0 +1,228 @@
+/*
+ * Navelgazer
+ * Gaurav Manek
+ *
+ */
+
+html, body {
+	height: 100%;
+	width: 100%;
+	padding:0;
+	margin:0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+pre, code, .code, .CodeMirror, #runtimeOut, .pp {
+	font-family: 'Source Code Pro', Courier, monospace;
+}
+
+h1,h2,h3 {
+	font-family: 'Merriweather', serif;
+
+	text-shadow: 0px 1px rgba(255, 255, 255, 0.4);
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+
+#header {
+	position: relative;
+	width: 100%;
+
+	background: #84b4e1;
+	box-shadow: 0 6px 6px -6px black;
+}
+#header>h1 {
+	font-size: 200%;
+	display: inline-block;
+	margin: 0.5rem 0 0.25rem 36px;
+	vertical-align: top;
+}
+#header>.links {
+	display: inline-block;
+
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+.links>small {
+	display: inline-block;
+	min-width: 6rem;
+	text-align: center;
+
+	margin-right: 8px;
+
+	border-bottom: 0.25rem solid #c3daf0;
+}
+
+.attribution {
+	position: absolute;
+	top: 3px;
+	right: 0;
+	margin: 0px;
+	padding: 0 1em 0 0.5em;
+	height: 18px;
+
+	background: #c3daf0;
+}
+
+
+#contentRoot {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background: #F7F7F7;
+
+	display: flex;
+	flex-direction: column;
+}
+.codeWrapper {
+	margin-left: -5px;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	border-top: thin solid #DDD;
+
+	flex: 1 1 auto;
+}
+.codeWrapper > .CodeMirror {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	height: 100%;
+	height: calc(100% - 1px);
+}
+
+.inputArea {
+	background: #F7F7F7;
+	padding: 0px 5px;
+	width: 75%;
+
+	border-left: thick solid #c3daf0;
+
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+.inputArea>:first-child {
+	margin-top: 5px;
+}
+
+.inputArea>* {
+	margin-top: 3px;
+	margin-bottom: 0px;
+}
+
+.inputArea>:last-child {
+	margin-bottom: 5px;
+}
+
+.codeView {
+	margin: 20px 36px;
+	margin: 20px calc(4rem + 7px);
+	padding: 8px;
+
+	border: thin solid black;
+}
+
+.inputArea input {
+	box-sizing: border-box;
+	width: 100%;
+	background: none;
+	border: none;
+	border-bottom: thin solid black;
+	text-align: right;
+}
+
+#codeArea {
+	flex: 1 1 auto;
+}
+
+#runtimeOut {
+	padding-left: 5px;
+	padding-bottom: 2px;
+	cursor: pointer;
+	margin: 5px;
+	min-height: 1.2em; /* Prevents shaking during mouse-overs */
+}
+.runtimeReady {
+	border: solid thin #333;
+	border-left: 5px solid black;
+	background: #FFF;
+}
+.runtimeGood {
+	border: solid thin #333;
+	border-left: 5px solid #05B904;
+	background: #FFF;
+}
+.runtimeError {
+	border: solid thin #333;
+	border-left: 5px solid #B90504;
+	background: #fdb2b1;
+}
+
+
+/*
+ * Gutter
+ */
+
+.linter {
+	width: 1em;
+}
+.gutterFlag {
+	text-align: center;
+	font-size: 90%;
+}
+.gutterFlag[tt]:hover::after {
+	opacity: 1;
+}
+.flagDep {
+	background: #CCC;
+}
+.flagGood { }
+.flagWarning {
+	color: #ffae19;
+}
+.flagError {
+	color: #B90504;
+}
+
+.runtimeTTWarning {
+	border: solid thin #333;
+	border-left: 5px solid #ffae19;
+	background: #FFF;
+}
+.runtimeTTGood {
+	border: solid thin #333;
+	border-left: 5px solid #05B904;
+	background: #FFF;
+}
+.runtimeTTError {
+	border: solid thin #333;
+	border-left: 5px solid #B90504;
+	background: #FFF;
+}
+
+
+/* Tooltip */
+
+.rule {	color: #A11; }
+.letter { color: #05a;  }
+.linenum { color: #219; }
+.premisenum{ color: #164; }
