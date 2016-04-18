@@ -1,0 +1,74 @@
+/* Printer-friendly CSS */
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1 {
+	font-family: 'Merriweather', serif;
+	font-size: 24px;
+	border-bottom: 1px solid black;
+}
+
+#printRoot table {
+	font-family: 'Source Code Pro', Courier, monospace;
+	width: 100%;
+}
+
+/* Hiding and showing various bits */
+
+div.links, div#contentRoot, div.attribution {
+	display: none;
+}
+
+div.printAttr {
+	border-top: 1px solid black;
+	width: 100%;
+}
+
+div.printAttr a {
+	font-size: 11px;
+	float: right;
+	text-decoration: none;
+}
+
+div.printAttr a:after {
+	content: " [" attr(href) "] " 
+}
+
+div#printRoot {
+	width: 100%;
+}
+
+div#printRoot table {
+	border-collapse: collapse;
+}
+
+div#printRoot tr td {
+	padding-right: 4pt;
+	border-bottom: 1px solid #CCC;
+}
+
+div#printRoot tr td:nth-child(1), div#printRoot tr td:nth-child(2), div#printRoot tr td:nth-child(4) {
+	text-align: right;
+}
+
+div#printRoot tr td:nth-child(3), div#printRoot tr td:nth-child(5) {
+	text-align: left;
+}
+
+div#printRoot tr td.comment {
+	text-align: left;
+}
+
+div#printRoot tr.logic td:first-child {
+	border-left: 3px solid black;
+}
+
+div#printRoot table tr:nth-child(2n) {
+	background: #EEE;
+}
+
+div#printRoot table {
+	width: 100%;
+}

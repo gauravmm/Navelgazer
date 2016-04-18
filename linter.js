@@ -651,7 +651,7 @@ function PrettyPrint(lines) {
 
 	spaces = (k) => " ".repeat(k);
 	// Now we add padding:
-	return text.map(function(l) {
+	var rv = text.map(function(l) {
 		if (Array.isArray(l)) {
 			return padding.map(function(pad, i){
 				var m = (pad >= NO_SPACE_AFTER)?"":" ";
@@ -667,4 +667,6 @@ function PrettyPrint(lines) {
 			return l;
 		}
 	}).join("\n") + "\n";
+
+	return {text: rv, columns: text};
 }
