@@ -56,8 +56,11 @@ function runLinter() {
 
 		// Lint the lines. The contents of lines is modified in this process.
 		var rv = Linter.lint(lines);
-		editor.setValue(PrettyPrint(lines));
+		var pp = PrettyPrint(lines);
+		editor.setValue(pp.text);
 		editor.setCursor(pos);
+
+		setPrintableArea(pp.columns);
 		
 		setFlags(rv.flags);
 		dependencies = rv.dependencies;
@@ -230,4 +233,58 @@ function handleMouseOut() {
 		});
 	}
 	revertRuntimeOut();
+}
+
+// Printing functions
+
+function setPrintableArea(cols) {
+	var pr = $("printRoot");
+
+	// Remove the existing data:
+	while (pr.lastChild) {
+    	pr.removeChild(pr.lastChild);
+	}
+
+	// Now we build a table:
+	var tbl = document.createElement("table");
+	tbl.border = "0";
+	tbl.setAttribute("cellspacing", "0");
+	tbl.setAttribute("cellpadding", "0");
+
+	for (var i = 0; i < cols.length; ++i) {
+		var c = cols[i];
+		if (Array.isArray(c)) {
+			var row = document.createElement('tr');
+			for (var j = 0; j < c.length; j++) {
+				var cell = document.createElement('td');
+				cell.appendChild(document.createTextNode(c[j]));
+				row.appendChild(cell);
+			}
+			row.className="logic"
+			tbl.appendChild(row);
+
+		} else {
+			if(c == "") {
+				c = document.createElement("span");
+				c.innerHTML = "&nbsp;"
+			} else {
+				c = document.createTextNode(c);
+			}
+			var row = document.createElement('tr');
+			var cell = document.createElement('td');
+			cell.className = "comment";
+			cell.appendChild(c);
+			cell.setAttribute("colspan", "5");
+			row.appendChild(cell);
+			tbl.appendChild(row);
+
+		}
+	}
+
+	var attr = document.createElement("div");
+	attr.className = "printAttr";
+	attr.innerHTML = "<a href=\"http://www.gauravmanek.com\"> Navelgazer by Gaurav Manek</a>";
+
+	pr.appendChild(tbl);
+	pr.appendChild(attr);
 }
