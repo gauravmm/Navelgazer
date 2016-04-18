@@ -124,7 +124,7 @@ function ExprFindMappingOneOne(lhs, rhs, lhsFreeVars) {
 	var flags = [];
 	var mappings = ExprFindMapping(lhs, rhs, lhsFreeVars);
 	if (mappings.length == 0) {
-		flags.push({ flag: LINT_FLAG.INCORRECT, text: "There is no possible source for " + Print.letters(inLetters) + " that leads to this sentence." });
+		flags.push({ flag: LINT_FLAG.INCORRECT, text: "There is no possible source for " + Print.letters(lhsFreeVars) + " that leads to this sentence." });
 		return { mappings: [], flags: flags };
 	}
 
@@ -132,7 +132,7 @@ function ExprFindMappingOneOne(lhs, rhs, lhsFreeVars) {
 	//  (a) complete: with no variable unaccounted for, and--
 	//  (b) unrepeating: with a one-to-one relationship between variables,
 	//  (c) free in main premise: meet the requirement that the mapping
-	//       source (i.e. (vars in targetExpr) == inLetters) are free in or absent
+	//       source (i.e. (vars in targetExpr) == lhsFreeVars) are free in or absent
 	//       from in the cited line. We don't need to check this because, if it
 	//       is bound, the earlier variable check will catch it.
 	//  (d) free in premises: meet the requirement that the mapping
@@ -148,7 +148,7 @@ function ExprFindMappingOneOne(lhs, rhs, lhsFreeVars) {
 	// (a)
 	mappings = mappings.filter(m => m.indexOf("") < 0);
 	if (mappings.length == 0) {
-		flags.push({ flag: LINT_FLAG.INCORRECT, text: "There are no possible assignments that account for all of " + Print.letters(inLetters) + "." });
+		flags.push({ flag: LINT_FLAG.INCORRECT, text: "There are no possible assignments that account for all of " + Print.letters(lhsFreeVars) + "." });
 		return { mappings: [], flags: flags };
 	}
 
@@ -164,7 +164,7 @@ function ExprFindMappingOneOne(lhs, rhs, lhsFreeVars) {
 		return true;
 	});
 	if (mappings.length == 0) {
-		flags.push({ flag: LINT_FLAG.INCORRECT, text: "There are no possible assignments that account for all of " + Print.letters(inLetters) + " without splitting a sentence letter." });
+		flags.push({ flag: LINT_FLAG.INCORRECT, text: "There are no possible assignments that account for all of " + Print.letters(lhsFreeVars) + " without splitting a sentence letter." });
 		return { mappings: [], flags: flags };
 	}
 	return { mappings: mappings, flags: flags };
