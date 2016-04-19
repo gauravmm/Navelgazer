@@ -91,12 +91,12 @@ function handleChange() {
 
 function saveDocument() {
 	if(localStorage)
-		localStorage.setItem("CodeString", editor.getValue());
+		localStorage.setItem("NavelgazerString", editor.getValue());
 }
 
 function loadDocument() {
 	if(localStorage) {
-		var cs = localStorage.getItem("CodeString");
+		var cs = localStorage.getItem("NavelgazerString");
 		if(cs && cs.trim().length > 0) {
 			editor.setValue(cs);
 		}
