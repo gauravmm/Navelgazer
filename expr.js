@@ -45,12 +45,26 @@ var Expressions = {
 	},
 
 	Junction: function (conj, exprs) {
+		// Merge *juncts if they are the same type.
+		// i.e. you want to collapse ((A and B) and C) to (A and B and C)
+		// so that the metalogic functions work as intended.
+
+		var juncts = [];
+		exprs.forEach(function(e) {
+			if(e.type == Expressions.TYPE_JUNCTION && e.conjunction == conj) {
+				juncts = juncts.concat(e.juncts);
+			} else {
+				juncts.push(e);
+			}
+
+		})
+
 		return {
 			uid: UID_COUNTER++,
 			type: Expressions.TYPE_JUNCTION,
 			conjunction: conj,
-			juncts: exprs,
-			toString: () => "(" + exprs.map(k => k.toString()).join(conj?" ∧ ":" ∨ ") + ")"
+			juncts: juncts,
+			toString: () => "(" + juncts.map(k => k.toString()).join(conj?" ∧ ":" ∨ ") + ")"
 		}
 	},
 
