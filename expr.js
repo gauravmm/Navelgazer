@@ -108,7 +108,13 @@ var Expressions = {
 			universal: b.universal,
 			letter: b.letter,
 			expr: expr,
-			toString: () => "(" + (b.universal?"∀":"∃") + b.letter.toString() + ")" + expr.toString()
+			toString: function() {
+				ex = expr.toString();
+				// Force-wrap the RHS of the Quantifier:
+				if(ex.length > 0 && (ex.substr(0, 1) != "(" || ex.substr(ex.length - 1) != ")"))
+					ex = "(" + ex + ")";
+				return "(" + (b.universal?"∀":"∃") + b.letter.toString() + ")" + ex;
+			} 
 		}
 	},
 

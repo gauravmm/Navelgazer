@@ -142,7 +142,7 @@ Expression
 
 
 ExprQuantifier
-  = binds:("(" _ ExprQuantifierInner _ ")" _ )+ expr:ExprGroup {
+  = binds:("("? _ ExprQuantifierInner _ ")"? _ )+ expr:ExprGroup {
     return Expressions.Quantifier(mapPos(binds, 2), expr);
   }
 
