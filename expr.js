@@ -110,8 +110,8 @@ var Expressions = {
 			expr: expr,
 			toString: function() {
 				ex = expr.toString();
-				// Force-wrap the RHS of the Quantifier:
-				if(ex.length > 0 && (ex.substr(0, 1) != "(" || ex.substr(ex.length - 1) != ")"))
+				// Force-wrap the RHS of the Quantifier if it is a Predicate:
+				if(expr.type == Expressions.TYPE_PREDICATE)
 					ex = "(" + ex + ")";
 				return "(" + (b.universal?"∀":"∃") + b.letter.toString() + ")" + ex;
 			} 
