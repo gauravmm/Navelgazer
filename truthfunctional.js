@@ -18,7 +18,9 @@ var rules = [
 	{ from: ["a", "not a -> b"], to: "a or b", name:"disjunction introduction" },
 	// De Morgan's Laws:
 	{ from: ["not(a and b)"], to: "not a or not b", name:"De Morgan's law" },
+	{ from: ["not a or not b"], to: "not(a and b)", name:"De Morgan's law" },
 	{ from: ["not(a or b)"], to: "not a and not b", name:"De Morgan's law" },
+	{ from: ["not a and not b"], to: "not(a or b)", name:"De Morgan's law" },
 	// Modus Ponens and Tollens:
 	{ from: ["a -> b", "a"], to: "b", name:"modus ponens" },
 	{ from: ["a -> b", "not b"], to: "not a", name:"modus tollens" },
